@@ -114,4 +114,58 @@ public class ProductTests {
         Assertions.assertEquals(productPage.getContent().size(), 0);
     }
 
+    @Test
+    public void getPaging_notFoundByBrand_test() throws Exception {
+        List<ProductCategory> categories = productCategoryRepository.findAll();
+        List<ProductBrand> brands = productBrandRepository.findAll();
+        List<ProductColor> colors = productColorRepository.findAll();
+        Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(1).getId(), colors.get(0).getId(), null, null, null);
+        Assertions.assertEquals(productPage.getContent().size(), 0);
+    }
+
+    @Test
+    public void getPaging_notFoundByColor_test() throws Exception {
+        List<ProductCategory> categories = productCategoryRepository.findAll();
+        List<ProductBrand> brands = productBrandRepository.findAll();
+        List<ProductColor> colors = productColorRepository.findAll();
+        Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(1).getId(), null, null, null);
+        Assertions.assertEquals(productPage.getContent().size(), 0);
+    }
+
+    @Test
+    public void getPaging_notFoundByPrice_test() throws Exception {
+        List<ProductCategory> categories = productCategoryRepository.findAll();
+        List<ProductBrand> brands = productBrandRepository.findAll();
+        List<ProductColor> colors = productColorRepository.findAll();
+        Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(0).getId(), 5100000L, null, null);
+        Assertions.assertEquals(productPage.getContent().size(), 0);
+    }
+
+    @Test
+    public void getPaging_notFoundByPrice_test2() throws Exception {
+        List<ProductCategory> categories = productCategoryRepository.findAll();
+        List<ProductBrand> brands = productBrandRepository.findAll();
+        List<ProductColor> colors = productColorRepository.findAll();
+        Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(0).getId(), null, 4990000L, null);
+        Assertions.assertEquals(productPage.getContent().size(), 0);
+    }
+
+    @Test
+    public void getPaging_found_test() throws Exception {
+        List<ProductCategory> categories = productCategoryRepository.findAll();
+        List<ProductBrand> brands = productBrandRepository.findAll();
+        List<ProductColor> colors = productColorRepository.findAll();
+        Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(0).getId(), 4990000L, 5100000L, null);
+        Assertions.assertEquals(productPage.getContent().size(), 1);
+
+        Product product = productPage.getContent().get(0);
+        Assertions.assertEquals(product.getName(), "Ultraboost");
+        Assertions.assertNotNull(product.getCategory());
+        Assertions.assertEquals(product.getCategory().getName(), "T-shirt");
+        Assertions.assertNotNull(product.getBrand());
+        Assertions.assertEquals(product.getBrand().getName(), "Adidas");
+        Assertions.assertNotNull(product.getColor());
+        Assertions.assertEquals(product.getColor().getName(), "Red");
+    }
+
 }
