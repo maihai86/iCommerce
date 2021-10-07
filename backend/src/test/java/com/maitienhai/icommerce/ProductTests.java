@@ -73,13 +73,13 @@ public class ProductTests {
         productCategoryRepository.deleteAll();
         productBrandRepository.deleteAll();
         productColorRepository.deleteAll();
+        productRepository.deleteAll();
     }
 
     @Test
     public void getPaging_cateNotFound_test() throws Exception {
-        BusinessException exception = Assertions.assertThrows(BusinessException.class, () -> {
-            productService.getPaging(0L, 0L, 0L, null, null, null);
-        });
+        BusinessException exception = Assertions
+                .assertThrows(BusinessException.class, () -> productService.getPaging(0L, 0L, 0L, null, null, null));
 
         Assertions.assertEquals(exception.getErrorCode(), "err.category-not-found");
     }
