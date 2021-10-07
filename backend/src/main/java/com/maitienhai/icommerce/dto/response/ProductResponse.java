@@ -21,10 +21,10 @@ public class ProductResponse implements Serializable {
 
     private String name;
 
-    private String categoryName;
+    private ProductCategoryRes category;
 
-    private String brandName;
+    private ProductBrandRes brand;
 
-    private String colorName;
+    private ProductColorRes color;
 
 }
