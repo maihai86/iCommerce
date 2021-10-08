@@ -9,6 +9,7 @@ import com.maitienhai.icommerce.repository.ProductCategoryRepository;
 import com.maitienhai.icommerce.repository.ProductColorRepository;
 import com.maitienhai.icommerce.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -16,9 +17,10 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Collections;
 
-@Profile("test")
 @Component
+@Profile("test")
 @RequiredArgsConstructor
+@Slf4j
 public class InsertTestDataRunner implements CommandLineRunner {
 
     private final ProductRepository productRepository;
@@ -31,6 +33,7 @@ public class InsertTestDataRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.info("INIT pre-data");
         if (productRepository.count() == 0) {
             ProductCategory category = ProductCategory.builder().name("T-shirt").build();
             ProductBrand brand = ProductBrand.builder().name("Adidas").build();
@@ -52,6 +55,8 @@ public class InsertTestDataRunner implements CommandLineRunner {
             productBrandRepository.save(ProductBrand.builder().name("Nike").build());
 
             productColorRepository.save(ProductColor.builder().name("Blue").build());
+        } else {
+            log.info("Initialized already, skip");
         }
     }
 }
