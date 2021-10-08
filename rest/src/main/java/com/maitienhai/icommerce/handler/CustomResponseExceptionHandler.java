@@ -1,6 +1,6 @@
 package com.maitienhai.icommerce.handler;
 
-import com.maitienhai.icommerce.dto.response.common.ApiResponse;
+import com.maitienhai.icommerce.dto.common.ApiResponse;
 import com.maitienhai.icommerce.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;

@@ -2,7 +2,7 @@ package com.maitienhai.icommerce.controller;
 
 import com.maitienhai.icommerce.domain.Product;
 import com.maitienhai.icommerce.dto.response.ProductResponse;
-import com.maitienhai.icommerce.dto.response.common.ApiResponse;
+import com.maitienhai.icommerce.dto.common.ApiResponse;
 import com.maitienhai.icommerce.mapper.ProductMapper;
 import com.maitienhai.icommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("api/v1/products")

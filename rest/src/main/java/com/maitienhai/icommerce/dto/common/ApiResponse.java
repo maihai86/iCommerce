@@ -1,4 +1,4 @@
-package com.maitienhai.icommerce.dto.response.common;
+package com.maitienhai.icommerce.dto.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -2,6 +2,7 @@ package com.maitienhai.icommerce;
 
 import com.maitienhai.icommerce.repository.*;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +33,8 @@ class IcommerceApplicationTests {
         log.info("productBrandRepository.findAll={}", productBrandRepository.findAll());
         log.info("productCategoryRepository.findAll={}", productCategoryRepository.findAll());
         log.info("productColorRepository.findAll={}", productColorRepository.findAll());
+
+        Assertions.assertTrue(true);
     }
 
 }

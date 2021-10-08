@@ -81,7 +81,7 @@ public class ProductTests {
         BusinessException exception = Assertions
                 .assertThrows(BusinessException.class, () -> productService.getPaging(0L, 0L, 0L, null, null, null));
 
-        Assertions.assertEquals(exception.getErrorCode(), "err.category-not-found");
+        Assertions.assertEquals("err.category-not-found", exception.getErrorCode());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class ProductTests {
             productService.getPaging(categories.get(0).getId(), 0L, 0L, null, null, null);
         });
 
-        Assertions.assertEquals(exception.getErrorCode(), "err.brand-not-found");
+        Assertions.assertEquals("err.brand-not-found", exception.getErrorCode());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class ProductTests {
             productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), 0L, null, null, null);
         });
 
-        Assertions.assertEquals(exception.getErrorCode(), "err.color-not-found");
+        Assertions.assertEquals("err.color-not-found", exception.getErrorCode());
     }
 
     @Test
@@ -111,7 +111,7 @@ public class ProductTests {
         List<ProductBrand> brands = productBrandRepository.findAll();
         List<ProductColor> colors = productColorRepository.findAll();
         Page<Product> productPage = productService.getPaging(categories.get(1).getId(), brands.get(0).getId(), colors.get(0).getId(), null, null, null);
-        Assertions.assertEquals(productPage.getContent().size(), 0);
+        Assertions.assertEquals(0, productPage.getContent().size());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class ProductTests {
         List<ProductBrand> brands = productBrandRepository.findAll();
         List<ProductColor> colors = productColorRepository.findAll();
         Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(1).getId(), colors.get(0).getId(), null, null, null);
-        Assertions.assertEquals(productPage.getContent().size(), 0);
+        Assertions.assertEquals(0, productPage.getContent().size());
     }
 
     @Test
@@ -129,7 +129,7 @@ public class ProductTests {
         List<ProductBrand> brands = productBrandRepository.findAll();
         List<ProductColor> colors = productColorRepository.findAll();
         Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(1).getId(), null, null, null);
-        Assertions.assertEquals(productPage.getContent().size(), 0);
+        Assertions.assertEquals(0, productPage.getContent().size());
     }
 
     @Test
@@ -138,7 +138,7 @@ public class ProductTests {
         List<ProductBrand> brands = productBrandRepository.findAll();
         List<ProductColor> colors = productColorRepository.findAll();
         Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(0).getId(), 5100000L, null, null);
-        Assertions.assertEquals(productPage.getContent().size(), 0);
+        Assertions.assertEquals(0, productPage.getContent().size());
     }
 
     @Test
@@ -147,7 +147,7 @@ public class ProductTests {
         List<ProductBrand> brands = productBrandRepository.findAll();
         List<ProductColor> colors = productColorRepository.findAll();
         Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(0).getId(), null, 4990000L, null);
-        Assertions.assertEquals(productPage.getContent().size(), 0);
+        Assertions.assertEquals(0, productPage.getContent().size());
     }
 
     @Test
@@ -156,16 +156,16 @@ public class ProductTests {
         List<ProductBrand> brands = productBrandRepository.findAll();
         List<ProductColor> colors = productColorRepository.findAll();
         Page<Product> productPage = productService.getPaging(categories.get(0).getId(), brands.get(0).getId(), colors.get(0).getId(), 4990000L, 5100000L, null);
-        Assertions.assertEquals(productPage.getContent().size(), 1);
+        Assertions.assertEquals(1, productPage.getContent().size());
 
         Product product = productPage.getContent().get(0);
-        Assertions.assertEquals(product.getName(), "Ultraboost");
+        Assertions.assertEquals("Ultraboost", product.getName());
         Assertions.assertNotNull(product.getCategory());
-        Assertions.assertEquals(product.getCategory().getName(), "T-shirt");
+        Assertions.assertEquals("T-shirt", product.getCategory().getName());
         Assertions.assertNotNull(product.getBrand());
-        Assertions.assertEquals(product.getBrand().getName(), "Adidas");
+        Assertions.assertEquals("Adidas", product.getBrand().getName());
         Assertions.assertNotNull(product.getColor());
-        Assertions.assertEquals(product.getColor().getName(), "Red");
+        Assertions.assertEquals("Red", product.getColor().getName());
     }
 
 }
