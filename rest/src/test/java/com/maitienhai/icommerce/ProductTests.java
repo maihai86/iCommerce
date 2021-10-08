@@ -43,7 +43,6 @@ public class ProductTests {
     ProductColorRepository productColorRepository;
 
     @BeforeAll
-    @Transactional
     public void setUp() {
         ProductCategory category = ProductCategory.builder().name("T-shirt").build();
         ProductBrand brand = ProductBrand.builder().name("Adidas").build();
@@ -68,7 +67,6 @@ public class ProductTests {
     }
 
     @AfterAll
-    @Transactional
     public void cleanup() {
         productCategoryRepository.deleteAll();
         productBrandRepository.deleteAll();

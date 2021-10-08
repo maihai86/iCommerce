@@ -20,7 +20,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    private final ProductMapper productMapper = Mappers.getMapper(ProductMapper.class);
+    private final ProductMapper productMapper;
 
     @GetMapping
     public ApiResponse<PageImpl<ProductResponse>> getPaging(@RequestParam(name = "category-id", required = false) Long categoryId,
