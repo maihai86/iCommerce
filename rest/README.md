@@ -1,4 +1,4 @@
-# About this REST API service:
+# 1. About this REST API service:
 
 - Software development principles: SOLID.
 - Software architecture: layered architecture. All layers are following:
@@ -26,7 +26,7 @@
   - DTO to entity and vice-versa mapper without reflection (using source generation mechanism).
   - Domain Driven Design's concepts which is specification.
 
-# Key libraries/frameworks:
+# 2. Key libraries/frameworks:
 
 See pom.xml:
 
@@ -39,7 +39,7 @@ See pom.xml:
 - lombok: the utility library to set up setter, getter and something for classes.
 - spring-boot-starter-test: the starter package for running many kinds of tests in the project.
 
-# Running app:
+# 3. Running app:
 
 1. Install JDK 8: https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html
 2. Install docker engine: https://docs.docker.com/engine/install/ \
@@ -145,7 +145,7 @@ Assume that I know the ID of the product which I want to add to my shopping cart
 in the web UI, specially the product detail screen. You can change the product which is added to shopping cart by
 changing the value of the property "productId" above.
 
-# ERD:
+# 4. ERD:
 
 ![ERD](./images/erd.png)
 
@@ -156,3 +156,38 @@ changing the value of the property "productId" above.
 - product_color: the table in which declare the color of product.
 - product: the table in which declare the product.
 - cart: the table in which declare the identifier of product contains in the customer's shopping cart.
+
+# 5. Architecture:
+## a. Use cases:
+
+![Use cases](./images/use_cases.png)
+
+- Request the list of products
+- Add product to the shopping cart
+
+## b. Container diagram:
+
+![Container diagram](./images/container_diagram.png)
+
+I assume that we have a completed iCommerce system, including web application, REST API and main database. 
+- Web app: User could use the functionalities of the iCommerce system through the web app. The web app connect to the below system through HTTP connection.
+- Backend:
+  - REST API: the REST API component. The main responsibilities are receiving requests from the web app, handling the business logic, fetching and saving to the main database, and the last one is sending response to the client. The used frameworks and libraries are Spring Boot, Spring Data JPA, lombok, mapstruct, Liquibase, Postgres connection driver.
+  - Main database: PostgresQL, one of the most famous open source databases. The REST API connects to the main database through JDBC connection.
+
+## c. Component diagram:
+
+![Component diagram](./images/component_diagram.png)
+
+Here is the set of the components inside the REST API.
+- Controller: the controller layer, the main responsibilities are receiving request of the client (specially the web app).
+- Service: the service layer, the main responsibilities are receiving request of the controller layer, handling the business logic, handling the database transaction to take control of database consistency.
+- Repository: the repository or DAO layer, the main responsibilities are handling data with the physical database, binding to Java POJO classes.
+- DTO: declare data transfer object classes.
+- Mapper: declare the mapper interfaces, the main responsibilities are converting from DTO to model and vice-versa.
+- Exception: declare the custom exception.
+- Handler: the global exception handler layer, the main responsibilities are handling whole exceptions of the REST API.
+- Domain: declare POJO model classes.
+- Specification: declare the specification classes, the utility that helps developer to write the complex query.
+- Bootstrap application: the class to bootstrap Spring Boot app.
+
