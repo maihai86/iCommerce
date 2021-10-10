@@ -1,4 +1,4 @@
-# 1. About this REST API service:
+# 1. iCommerce REST API:
 
 - Software development principles: SOLID.
 - Software architecture: layered architecture. All layers are following:
@@ -117,9 +117,9 @@ java -Dspring.profiles.active=test -jar target/rest-0.0.1-SNAPSHOT.jar
 
 Now, the app is ready!
 
-# APIs:
+# 4. APIs:
 
-1. Get a list of products, including filter by category, brand, color, and price range.
+a. Get a list of products, including filter by category, brand, color, and price range.
 
 ```
 curl -X GET \
@@ -131,7 +131,7 @@ curl -X GET \
 Assume that we filter the list of products with combo box (dropdown box) in web UI. Hence I will use the ID of the input
 criteria to pass to the parameters list of this API. You can change the criteria value to test this API by yourself.
 
-2. Add a product to shopping cart:
+b. Add a product to shopping cart:
 
 ```
 curl -X POST \
@@ -145,7 +145,7 @@ Assume that I know the ID of the product which I want to add to my shopping cart
 in the web UI, specially the product detail screen. You can change the product which is added to shopping cart by
 changing the value of the property "productId" above.
 
-# 4. ERD:
+# 5. ERD:
 
 ![ERD](./images/erd.png)
 
@@ -157,7 +157,7 @@ changing the value of the property "productId" above.
 - product: the table in which declare the product.
 - cart: the table in which declare the identifier of product contains in the customer's shopping cart.
 
-# 5. Architecture:
+# 6. Architecture:
 ## a. Use cases:
 
 ![Use cases](./images/use_cases.png)
