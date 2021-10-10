@@ -191,3 +191,12 @@ Here is the set of the components inside the REST API.
 - Specification: declare the specification classes, the utility that helps developer to write the complex query.
 - Bootstrap application: the class to bootstrap Spring Boot app.
 
+## d. Deployment diagram:
+
+![Deployment diagram](./images/deployment_diagram.png)
+
+I assume that we have to deploy to the one-premise servers.
+- DevOps server: I could use 1 server to deploy the DevOps's software systems to act as a CI/CD system.
+- Application server: deploy the REST API.
+- Web server: deploy the web application bundle.
+- Database server: deploy the database software system.
