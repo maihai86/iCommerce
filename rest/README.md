@@ -186,7 +186,7 @@ Here is the set of the components inside the REST API.
 - DTO: declare data transfer object classes.
 - Mapper: declare the mapper interfaces, the main responsibilities are converting from DTO to model and vice-versa.
 - Exception: declare the custom exception.
-- Handler: the global exception handler layer, the main responsibilities are handling whole exceptions of the REST API.
+- Handler: the global exception handler layer, the main responsibilities are handling whole exceptions to the REST API.
 - Domain: declare POJO model classes.
 - Specification: declare the specification classes, the utility that helps developer to write the complex query.
 - Bootstrap application: the class to bootstrap Spring Boot app.
